@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="سيرتي — أنشئ سيرة ذاتية عربية أو إنجليزية بسهولة."
+    />
+    <title>سيرتي | أنشئ سيرتك الذاتية</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="assets/vendor/html2pdf.bundle.min.js" defer></script>
+    <script src="script.js" defer></script>
+  </head>
+  <body class="app-page">
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="سيرتي — الصفحة الرئيسية">
+        <span class="brand-symbol" aria-hidden="true">س</span>
+        <span class="brand-copy">
+          <strong data-i18n="brandAr">سيرتي</strong>
+          <small>Seerati</small>
+        </span>
+      </a>
+
+      <div class="header-actions">
+        <span class="stage-badge" data-i18n="headerBadge">مجاني وبدون تسجيل</span>
+        <div class="language-switch" aria-label="اختيار اللغة">
+          <button class="language-button is-active" type="button" data-lang="ar" aria-pressed="true">
+            عربي
+          </button>
+          <button class="language-button" type="button" data-lang="en" aria-pressed="false">
+            EN
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main class="app-main">
+      <section class="intro-row" aria-labelledby="page-title">
+        <div>
+          <p class="eyebrow" data-i18n="eyebrow">أقسام السيرة</p>
+          <h1 id="page-title" data-i18n="pageTitle">كمّل تفاصيل خبرتك.</h1>
+          <p class="intro-copy" data-i18n="pageIntro">
+            أضف مهاراتك وخبراتك وتعليمك ولغاتك، وكل قسم يتحدث مباشرة.
+          </p>
+        </div>
+        <div class="local-status">تم بناؤه بحب، أحمد باحاذق</div>
+      </section>
+
+      <nav class="mobile-jump" aria-label="تنقل سريع داخل الصفحة">
+        <button type="button" data-scroll-to="editor" data-i18n="jumpEditor">النموذج</button>
+        <button type="button" data-scroll-to="preview" data-i18n="jumpPreview">المعاينة</button>
+      </nav>
+
+      <section class="workspace" aria-label="محرر السيرة الذاتية">
+        <article class="editor-card" aria-labelledby="form-title" data-workspace-panel="editor">
+          <div class="card-heading">
+            <span class="step-number" aria-hidden="true">01</span>
+            <div>
+              <p class="card-kicker" data-i18n="formKicker">بياناتك الأساسية</p>
+              <h2 id="form-title" data-i18n="formTitle">خلّنا نتعرّف عليك</h2>
+            </div>
+          </div>
+
+          <div class="form-state" aria-live="polite">
+            <div class="completion-row">
+              <span data-i18n="completionTitle">اكتمال البيانات الأساسية</span>
+              <strong data-completion-label>0 / 5</strong>
+            </div>
+            <div class="completion-track" aria-hidden="true">
+              <span data-completion-bar></span>
+            </div>
+            <p data-state-message>ابدأ بالاسم — البيانات العربية مستقلة عن الإنجليزية.</p>
+          </div>
+
+          <form id="profileForm" class="profile-form" autocomplete="on" novalidate>
+            <div class="field-group">
+              <label for="fullName" data-i18n="fullNameLabel">الاسم الكامل</label>
+              <input
+                id="fullName"
+                name="fullName"
+                type="text"
+                autocomplete="name"
+                maxlength="80"
+                data-profile-field="fullName"
+                placeholder="مثال: نورة العتيبي"
+                data-i18n-placeholder="fullNamePlaceholder"
+              />
+            </div>
+
+            <div class="field-group">
+              <label for="jobTitle" data-i18n="jobTitleLabel">المسمى الوظيفي</label>
+              <input
+                id="jobTitle"
+                name="jobTitle"
+                type="text"
+                autocomplete="organization-title"
+                maxlength="100"
+                data-profile-field="jobTitle"
+                placeholder="مثال: مصممة تجربة مستخدم"
+                data-i18n-placeholder="jobTitlePlaceholder"
+              />
+            </div>
+
+            <div class="field-group field-group--wide">
+              <div class="label-row">
+                <label for="summary" data-i18n="summaryLabel">نبذة شخصية</label>
+                <span class="summary-meta">
+                  <span data-i18n="summaryHint">سطران أو ثلاثة تكفي</span>
+                  <b data-summary-counter>0 / 600</b>
+                </span>
+              </div>
+              <textarea
+                id="summary"
+                name="summary"
+                rows="5"
+                maxlength="600"
+                data-profile-field="summary"
+                placeholder="اكتب نبذة قصيرة عن خبرتك وما الذي يميزك…"
+                data-i18n-placeholder="summaryPlaceholder"
+              ></textarea>
+            </div>
+
+            <div class="form-grid">
+              <div class="field-group">
+                <label for="phone" data-i18n="phoneLabel">رقم التواصل</label>
+                <input
+                  id="phone"
+                  name="phone"
+                  type="tel"
+                  autocomplete="tel"
+                  maxlength="30"
+                  data-profile-field="phone"
+                  placeholder="05x xxx xxxx"
+                  data-i18n-placeholder="phonePlaceholder"
+                />
+              </div>
+
+              <div class="field-group">
+                <label for="email" data-i18n="emailLabel">البريد الإلكتروني</label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  autocomplete="email"
+                  maxlength="120"
+                  data-profile-field="email"
+                  aria-describedby="emailError"
+                  placeholder="name@example.com"
+                  data-i18n-placeholder="emailPlaceholder"
+                />
+                <p id="emailError" class="field-error" data-email-error role="alert"></p>
+              </div>
+            </div>
+          </form>
+
+          <section class="design-editor" aria-labelledby="design-title">
+            <div class="section-divider">
+              <div>
+                <p class="card-kicker" data-i18n="designKicker">شكل السيرة</p>
+                <h2 id="design-title" data-i18n="designTitle">اختر الستايل اللي يناسبك</h2>
+              </div>
+              <span data-i18n="designHint">تقدر تغيّره بأي وقت</span>
+            </div>
+
+            <div class="design-control">
+              <h3 data-i18n="templateLabel">القالب</h3>
+              <div class="template-picker" role="group" aria-label="اختيار قالب السيرة">
+                <button type="button" class="template-option is-active" data-template="professional" aria-pressed="true">
+                  <span class="template-miniature template-miniature--professional" aria-hidden="true"></span>
+                  <strong data-i18n="templateProfessional">احترافي</strong>
+                  <small data-i18n="templateProfessionalHint">مرتب وواضح</small>
+                </button>
+                <button type="button" class="template-option" data-template="modern" aria-pressed="false">
+                  <span class="template-miniature template-miniature--modern" aria-hidden="true"></span>
+                  <strong data-i18n="templateModern">عصري</strong>
+                  <small data-i18n="templateModernHint">جريء بعمود جانبي</small>
+                </button>
+                <button type="button" class="template-option" data-template="graduate" aria-pressed="false">
+                  <span class="template-miniature template-miniature--graduate" aria-hidden="true"></span>
+                  <strong data-i18n="templateGraduate">خريجين</strong>
+                  <small data-i18n="templateGraduateHint">يقدّم التعليم والمهارات</small>
+                </button>
+                <button type="button" class="template-option" data-template="minimal" aria-pressed="false">
+                  <span class="template-miniature template-miniature--minimal" aria-hidden="true"></span>
+                  <strong data-i18n="templateMinimal">مختصر</strong>
+                  <small data-i18n="templateMinimalHint">نظيف وبدون زحمة</small>
+                </button>
+                <button type="button" class="template-option" data-template="bold" aria-pressed="false">
+                  <span class="template-miniature template-miniature--bold" aria-hidden="true"></span>
+                  <strong data-i18n="templateBold">جريء</strong>
+                  <small data-i18n="templateBoldHint">عنوان قوي وواضح</small>
+                </button>
+              </div>
+            </div>
+
+            <div class="design-control design-control--row">
+              <div>
+                <h3 data-i18n="colorLabel">لون العناوين</h3>
+                <div class="color-picker" role="group" aria-label="اختيار لون العناوين">
+                  <button type="button" class="color-swatch" data-accent="#173f5f" style="--swatch:#173f5f" aria-label="كحلي"></button>
+                  <button type="button" class="color-swatch is-active" data-accent="#1c7c75" style="--swatch:#1c7c75" aria-label="تركواز"></button>
+                  <button type="button" class="color-swatch" data-accent="#7a2748" style="--swatch:#7a2748" aria-label="خمري"></button>
+                  <button type="button" class="color-swatch" data-accent="#5f6f3a" style="--swatch:#5f6f3a" aria-label="زيتوني"></button>
+                  <button type="button" class="color-swatch" data-accent="#664b8e" style="--swatch:#664b8e" aria-label="بنفسجي"></button>
+                  <label class="custom-color" title="لون خاص">
+                    <input type="color" value="#1c7c75" data-custom-accent />
+                    <span data-i18n="customColorLabel">لونك</span>
+                  </label>
+                </div>
+              </div>
+              <label class="density-control">
+                <span data-i18n="densityLabel">تباعد السيرة</span>
+                <select data-density>
+                  <option value="comfortable" data-i18n="densityComfortable">مريح</option>
+                  <option value="compact" data-i18n="densityCompact">مختصر</option>
+                </select>
+              </label>
+              <label class="toggle-control">
+                <input type="checkbox" data-hide-empty checked />
+                <span class="toggle-track" aria-hidden="true"></span>
+                <span data-i18n="hideEmptyLabel">إخفاء الأقسام الفارغة</span>
+              </label>
+            </div>
+          </section>
+
+          <section class="extended-editor" aria-labelledby="details-title">
+            <div class="section-divider">
+              <div>
+                <p class="card-kicker" data-i18n="detailsKicker">تفاصيل السيرة</p>
+                <h2 id="details-title" data-i18n="detailsTitle">وش الأشياء اللي تميزك؟</h2>
+              </div>
+              <span data-i18n="detailsHint">أضف اللي تحتاجه واترك الباقي</span>
+            </div>
+
+            <section class="editor-section" aria-labelledby="skills-editor-title">
+              <div class="editor-section-head">
+                <div>
+                  <span class="editor-section-number">02</span>
+                  <h3 id="skills-editor-title" data-i18n="skillsEditorTitle">المهارات</h3>
+                </div>
+              </div>
+              <div class="inline-add-row">
+                <input type="text" maxlength="50" data-new-skill placeholder="مثال: إدارة المشاريع" data-i18n-placeholder="skillPlaceholder" />
+                <button type="button" class="add-button" data-add-skill data-i18n="addSkill">إضافة مهارة</button>
+              </div>
+              <div class="editor-chip-list" data-skills-editor aria-live="polite"></div>
+              <p class="inline-feedback" data-skill-feedback role="status"></p>
+            </section>
+
+            <section class="editor-section" aria-labelledby="experience-editor-title">
+              <div class="editor-section-head">
+                <div>
+                  <span class="editor-section-number">03</span>
+                  <h3 id="experience-editor-title" data-i18n="experienceEditorTitle">الخبرات الوظيفية</h3>
+                </div>
+                <button type="button" class="add-button add-button--light" data-add-experience data-i18n="addExperience">+ إضافة خبرة</button>
+              </div>
+              <div class="repeat-editor-list" data-experiences-editor></div>
+            </section>
+
+            <section class="editor-section" aria-labelledby="education-editor-title">
+              <div class="editor-section-head">
+                <div>
+                  <span class="editor-section-number">04</span>
+                  <h3 id="education-editor-title" data-i18n="educationEditorTitle">التعليم</h3>
+                </div>
+                <button type="button" class="add-button add-button--light" data-add-education data-i18n="addEducation">+ إضافة مؤهل</button>
+              </div>
+              <div class="repeat-editor-list" data-education-editor></div>
+            </section>
+
+            <section class="editor-section" aria-labelledby="languages-editor-title">
+              <div class="editor-section-head">
+                <div>
+                  <span class="editor-section-number">05</span>
+                  <h3 id="languages-editor-title" data-i18n="languagesEditorTitle">اللغات</h3>
+                </div>
+                <button type="button" class="add-button add-button--light" data-add-language data-i18n="addLanguage">+ إضافة لغة</button>
+              </div>
+              <div class="repeat-editor-list" data-languages-editor></div>
+            </section>
+          </section>
+
+          <section class="advanced-editor" aria-labelledby="advanced-title">
+            <div class="section-divider">
+              <div>
+                <p class="card-kicker" data-i18n="advancedKicker">تخصيص متقدم</p>
+                <h2 id="advanced-title" data-i18n="advancedTitle">رتّبها على طريقتك</h2>
+              </div>
+              <span data-i18n="advancedHint">الترتيب والحفظ يصيرون تلقائي</span>
+            </div>
+
+            <div class="advanced-grid">
+              <section class="advanced-card">
+                <h3 data-i18n="sectionOrderTitle">ترتيب الأقسام</h3>
+                <p data-i18n="sectionOrderHint">حرّك القسم فوق أو تحت، أو اخفه من السيرة.</p>
+                <div class="section-order-list" data-section-order-list></div>
+              </section>
+
+              <section class="advanced-card">
+                <h3 data-i18n="customSectionsTitle">أقسامك الخاصة</h3>
+                <p data-i18n="customSectionsHint">مثل الدورات، المشاريع، التطوع أو أي قسم تحتاجه.</p>
+                <div class="inline-add-row">
+                  <input type="text" maxlength="60" data-new-custom-title data-i18n-placeholder="customSectionPlaceholder" placeholder="مثال: المشاريع" />
+                  <button type="button" class="add-button" data-add-custom-section data-i18n="addCustomSection">إضافة قسم</button>
+                </div>
+                <div class="custom-sections-editor" data-custom-sections-editor></div>
+              </section>
+            </div>
+
+            <p class="save-status" data-save-status aria-live="polite" data-i18n="saveReady">الحفظ التلقائي جاهز.</p>
+          </section>
+
+          <div class="form-actions">
+            <button class="clear-button" type="button" data-clear-form>
+              <span aria-hidden="true">×</span>
+              <span data-i18n="clearForm">مسح بيانات هذه اللغة</span>
+            </button>
+            <span class="memory-note" data-i18n="memoryNote">يمكنك التبديل بين العربية والإنجليزية</span>
+          </div>
+        </article>
+
+        <aside class="preview-stage" aria-labelledby="preview-title" data-workspace-panel="preview">
+          <div class="preview-toolbar">
+            <div>
+              <p class="preview-label" data-i18n="previewLabel">معاينة السيرة</p>
+              <h2 id="preview-title" data-i18n="previewTitle">سيرتك تكبر معك</h2>
+            </div>
+            <div class="preview-actions">
+              <span class="offline-chip offline-chip--live" data-i18n="offlineChip">جاهزة للتصدير</span>
+              <button type="button" class="export-button" data-print-cv disabled>
+                <span aria-hidden="true">⌁</span>
+                <span data-i18n="printButton">طباعة</span>
+              </button>
+              <button type="button" class="export-button export-button--primary" data-download-pdf disabled>
+                <span aria-hidden="true">↓</span>
+                <span data-i18n="pdfButton">تحميل PDF</span>
+              </button>
+            </div>
+          </div>
+          <p class="export-status" data-export-status aria-live="polite" data-i18n="exportPreparing">لحظة، نجهّز الخط العربي للتصدير…</p>
+
+          <div class="paper-wrap">
+            <article class="resume-paper template-professional" aria-label="معاينة السيرة الذاتية" data-live-preview>
+              <header class="resume-header">
+                <div class="resume-name-placeholder" data-i18n="resumeName" data-preview-field="fullName">اسمك هنا</div>
+                <div class="resume-role-placeholder" data-i18n="resumeRole" data-preview-field="jobTitle">المسمى الوظيفي</div>
+                <div class="resume-contact-line">
+                  <span data-preview-field="email">name@example.com</span>
+                  <i aria-hidden="true"></i>
+                  <span data-preview-field="phone">05x xxx xxxx</span>
+                </div>
+              </header>
+
+              <div class="resume-body" data-resume-body>
+              <section class="resume-section" data-preview-section="summary" hidden>
+                <h3 data-i18n="summarySection">نبذة شخصية</h3>
+                <p class="resume-summary-text" data-preview-summary></p>
+              </section>
+
+              <section class="resume-section" data-preview-section="experience" hidden>
+                <h3 data-i18n="experienceSection">الخبرات</h3>
+                <div class="resume-list" data-preview-experiences></div>
+              </section>
+
+              <section class="resume-section" data-preview-section="education" hidden>
+                <h3 data-i18n="educationSection">التعليم</h3>
+                <div class="resume-list" data-preview-education></div>
+              </section>
+
+              <section class="resume-section" data-preview-section="skills" hidden>
+                <h3 data-i18n="skillsSection">المهارات</h3>
+                <div class="resume-skill-list" data-preview-skills></div>
+              </section>
+
+              <section class="resume-section" data-preview-section="languages" hidden>
+                <h3 data-i18n="languagesSection">اللغات</h3>
+                <div class="resume-language-list" data-preview-languages></div>
+              </section>
+              </div>
+
+            </article>
+          </div>
+        </aside>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p><span data-i18n="footerText">صُمّم ليجعل البداية أسهل.</span> <strong>Seerati</strong></p>
+      <span data-i18n="privacyText">بياناتك لا تغادر جهازك</span>
+    </footer>
+  </body>
+</html>
