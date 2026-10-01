@@ -1131,7 +1131,7 @@ textarea:focus-visible {
   unicode-bidi: isolate;
   font-family: Arial, sans-serif;
   font-size: 8px;
-  white-space: nowrap;
+  white-space: normal;
 }
 
 .resume-entry-subtitle {
@@ -1362,9 +1362,23 @@ textarea:focus-visible {
   min-height: 720px;
   padding: clamp(36px, 6vw, 62px);
   overflow: visible;
+  overflow-wrap: anywhere;
+  word-break: normal;
   color: #1f3033;
   background: var(--paper);
   box-shadow: 0 22px 52px rgba(0, 0, 0, 0.28);
+}
+
+/* Allow long Arabic words, links and pasted text to wrap in every template,
+   including print and PDF, without clipping or widening flex/grid items. */
+.resume-paper * {
+  min-width: 0;
+}
+
+.resume-contact-line span,
+.resume-skill,
+.resume-entry-date {
+  max-width: 100%;
 }
 
 .resume-empty-placeholder {
